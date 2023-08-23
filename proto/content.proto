@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option go_package = "./internal/service/content/pb";
+
+import "google/api/annotations.proto";
+
+service ContentService {
+  rpc GetTitleContent (GetTitleContentRequest) returns (GetTitleContentReply) {
+    option (google.api.http) = {
+      get: "/v1/search"
+    };
+  }
+}
+
+message TitleContent {
+  string link                   = 1;
+  string title                  = 2;
+  string titleOrig              = 3;
+  string otherTitle             = 4;
+  int32 year                    = 5;
+  string kinopoiskID            = 6;
+  string shikimoriID            = 7;
+  string imdbID                 = 8;
+  string animeStatus            = 9;
+  string animeDescription       = 10;
+  string posterURL              = 11;
+  int32 duration                = 12;
+  double kinopoiskRating        = 13;
+  double imdbRating             = 14;
+  double shikimoriRating        = 15;
+  string premiereWorld          = 16;
+  int32 episodesTotal           = 17;
+  repeated string writers       = 18;
+  repeated string screenshots   = 19;
+}
+
+message TitleFilter {
+  string opt = 1;
+  string val = 2;
+}
+
+message GetTitleContentRequest {
+  TitleFilter filter = 1;
+}
+
+message GetTitleContentReply {
+  repeated TitleContent titleContent = 1;
+}

@@ -1,8 +1,8 @@
 .PHONY: start dr dc redc protoc gw
 
 start:
-	go build -o anistream-gateway cmd/main.go
-	./anistream-gateway
+	go build -o bin/anistream-gateway cmd/main.go
+	./bin/anistream-gateway
 
 dr:
 	docker build --tag anistream-gateway .

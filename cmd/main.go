@@ -8,5 +8,5 @@ import (
 func main() {
 	cfg := config.Load()
 
-	app.RunHttpProxy(cfg)
+	app.RunGateway(cfg)
 }

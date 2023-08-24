@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  gateway:
+    container_name: anistream-gateway
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "50050:50050"
+    environment:
+      - GATEWAY_SERVICE_CONFIG_PATH=/app/config/local.yml
+    volumes:
+      - /home/bruma/anistream-gateway/config:/app/config
+
+  content:
+    container_name: anistream-content
+    build:
+      context: ../anistream-content
+      dockerfile: Dockerfile
+    ports:
+      - "50051:50051"
+    environment:
+      - CONTENT_SERVICE_CONFIG_PATH=/app/config/local.yml
+      - KODIK_TOKEN=${KODIK_TOKEN}
+    volumes:
+      - /home/bruma/anistream-content/config:/app/config
+
+networks:
+  anistream-network:

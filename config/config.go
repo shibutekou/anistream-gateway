@@ -7,9 +7,13 @@ import (
 )
 
 type Config struct {
-	Env                string `yaml:"env" env-default:"local"`
-	ProxyAddr          string `yaml:"proxy_addr" env-default:":50050"`
-	ContentServiceAddr string `yaml:"content_service_addr" env-required:"true"`
+	Env          string `yaml:"env" env-default:"local"`
+	ProxyAddr    string `yaml:"proxy_addr" env-default:":50050"`
+	Microservice `yaml:"microservice" env-required:"true"`
+}
+
+type Microservice struct {
+	ContentAddr string `yaml:"content_addr" env-required:"true"`
 }
 
 func Load() *Config {
